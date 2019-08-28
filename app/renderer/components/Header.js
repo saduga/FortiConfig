@@ -6,7 +6,7 @@ export default class Header extends Component {
     return (
       <header>
         <div className="fortinet-grid-icon">
-          <f-icon className="ftnt-fortinet-grid icon-xxl" />
+          <f-icon class="ftnt-fortinet-grid icon-xxl" />
         </div>
         <div className="platform">
           <div>FortiGate VM64-KVM</div>
