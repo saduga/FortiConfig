@@ -1,0 +1,1 @@
+define(["angular"],function(angular){"use strict";function SelectObjectInfo(){this._map={}}return SelectObjectInfo.prototype.getMap=function(source){return this._map[source]||(this._map[source]=angular.extend({},Omniselect.getSourceDataSync(source).mapping)),this._map[source]},function(providers){providers.$provide.service("selectObjectInfo",SelectObjectInfo)}});

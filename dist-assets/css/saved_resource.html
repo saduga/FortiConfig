@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://10.5.21.29/p/utm/wf/profile/edit/default/? -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<title>Edit Web Filter Profile</title>
+
+<meta http-equiv="Content-Type" content="text/html">
+<meta http-equiv="pragma" content="no-cache">
+<script>
+var is_rw_admin = true;
+var is_guest = false;
+var is_ipv6_enabled = false;
+var gui_lines_per_page = 50;
+var lang_dict = {};
+window.onerror = function(msg, file, line) {
+    if (('$j' in window) && ('JSON' in window)) {
+        $j.post("/api/monitor?path=system&name=debug", {
+            "json": JSON.stringify({
+                "type": "JavaScript",
+                "msg": msg,
+                "file": file,
+                "line": line
+            })
+        });
+    }
+};
+</script><link href="./main-green.css" rel="stylesheet" type="text/css">
+
+<link href="./jquery.jstree.css" rel="stylesheet" type="text/css">
+<link href="./main-green.css" rel="stylesheet" type="text/css">
+
+<link href="./utm_profiles.css" type="text/css" rel="stylesheet">
+
+<link href="./treeview.css" type="text/css" rel="stylesheet">
+<link href="./jquery.category.css" type="text/css" rel="stylesheet">
+<link href="./wf_profile.css" type="text/css" rel="stylesheet">
+
+<script src="./es6-shim.js"></script>
+<script src="./fweb_all.js"></script>
+
+<script src="./dialog.js"></script>
+
+<script type="text/javascript" src="./utm_profiles.js"></script>
+
+<script type="text/javascript" src="./jquery.jstree.js"></script>
+<script type="text/javascript" src="./qed_list_all.js"></script>
+<script type="text/javascript" src="./require_all.js"></script>
+<script type="text/javascript" src="./wf_common.js"></script>
+<script type="text/javascript" src="./wf_url_filter.js"></script>
+<script type="text/javascript" src="./wf_profile_dlg.js"></script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="angular" src="./ng_all.js"></script></head>
+
+<body class="main yui-skin-sam medium large" data-theme="green" style="width: 1px; min-width: 100%;">
+<div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="d9ff10bd2bcb197b0a75745485b0842e" placeholder=" "></div><div class="dialog absolute">
+<form method="post" action="http://10.5.21.29/p/utm/wf/profile/edit/default/?" novalidate="novalidate">
+<div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="d9ff10bd2bcb197b0a75745485b0842e" placeholder=" "></div>
+<div class="title-bar">
+<h1>Edit Web Filter Profile</h1>
+
+<div class="profile_selector">
+    <select name="sel_profile" id="sel_profile">
+        <option selected="selected" value="default" data-qtype="350" data-qdel="0" data-qref="1">
+            default
+        </option>
+        <option value="monitor-all" data-qtype="350" data-qdel="None" data-qref="0">
+            monitor-all
+        </option>
+    </select>
+
+
+        <button type="button" class="bare" id="prof_add">
+            <img src="./db_add.png" title="Create New" class="ftnt-shared-hide">
+            <f-icon class="fa-plus-circle only-child ftnt-shared-show"></f-icon>
+        </button>
+        <button type="button" class="bare" id="prof_clone">
+            <img src="./copy.gif" title="Clone" class="ftnt-shared-hide">
+            <f-icon class="ftnt-copy only-child ftnt-shared-show"></f-icon>
+        </button>
+        <button type="button" class="bare" id="prof_del" style="display: none;">
+            <img src="./db_delete.png" title="Delete" class="ftnt-shared-hide">
+            <f-icon class="fa-trash only-child ftnt-shared-show"></f-icon>
+        </button>
+        <button type="button" class="bare" id="prof_list">
+            <img src="./db_all.png" title="View List" class="ftnt-shared-hide">
+            <f-icon class="fa-list only-child ftnt-shared-show"></f-icon>
+        </button>
+</div>
+
+</div>
+
+<div class="content ">
+
+    <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" maxlength="35" value="default" class="XSSChecker required disabled" disabled="" placeholder=" " aria-required="true">
+    </div>
+    <div class="field "><label for="comment">
+Comments</label><div class="textarea-wrapper" style="position: relative;"><textarea name="comment" value="Default web filtering." id="comment" cols="40" rows="1" expand="true" placeholder="Write a comment..." maxlength="255" style="overflow: hidden; height: 24px;">Default web filtering.</textarea><span class="ui-textarea-elem-text-count">22/255</span></div>    </div>
+
+
+  <div class="field hidden">
+    <label>Inspection Mode</label>
+    <div>
+      <div class="radio-group">
+        <input type="radio" name="inspection-mode" id="mode_proxy" value="proxy" checked="checked" placeholder=" ">
+        <label for="mode_proxy">
+Proxy        </label>
+        <input type="radio" name="inspection-mode" id="mode_flow" value="flow-based" placeholder=" ">
+        <label for="mode_flow">
+Flow-based        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+<label for="ftgd_ftgd_cats" class="section-title">
+    <input type="checkbox" name="ftgd-enable" id="ftgd_ftgd_cats" value="1" class="toggle-switch dependency_trigger" checked="checked" placeholder=" ">
+    <label for="ftgd_ftgd_cats"></label>
+    <h3>FortiGuard category based filter</h3>
+</label>
+
+<section class="depends" data-show-if-checked="#ftgd_ftgd_cats">
+        <div class="field rating-group"><label for="ratings">
+Parental control; allow highest rated content</label><div class="">
+<div class="radio-group "><input type="radio" id="ratings_Custom" name="ratings" value="Custom" placeholder=" ">
+    <label for="ratings_Custom">
+        <span>Custom</span></label><input type="radio" id="ratings_G" name="ratings" value="G" placeholder=" ">
+    <label for="ratings_G">
+        <span>G</span></label><input type="radio" id="ratings_PG-13" name="ratings" value="PG-13" placeholder=" ">
+    <label for="ratings_PG-13">
+        <span>PG-13</span></label><input type="radio" id="ratings_R" name="ratings" value="R" placeholder=" ">
+    <label for="ratings_R">
+        <span>R</span></label></div>        </div>    </div>
+
+
+      <div id="cat_tree">
+      <div class="cat_tree_border">
+        <div class="cat_tree_search_bar">
+          <label id="showFilter" class="">
+Show          </label>
+          <div><div class="select-widget single-select valid" tabindex="0"><div class="selected-entries"><div class="selected-entry"><span class="entry-value"><span class="select-formatted-content"><f-icon class="fa-custom-action" title="All"></f-icon><span title="All">All</span></span></span></div></div><div class="add-placeholder"><f-icon class="fa-caret-down"></f-icon></div></div><input type="text" id="sel_action_filter" name="sel_action_filter" placeholder=" " data-select-widget="true" class="hidden valid" aria-invalid="false"></div>
+        </div>
+        <div id="treeDivCat" class="jstree jstree-1 jstree-default jstree-checkbox-selection" role="tree" aria-multiselectable="true" tabindex="0" aria-activedescendant="22g" aria-busy="false"><ul class="jstree-container-ul jstree-children" role="group"><li role="treeitem" rel="disable" aria-selected="false" aria-level="1" aria-labelledby="22g_anchor" aria-expanded="false" id="22g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="22g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_disable jstree-themeicon-custom" role="presentation"></i>Local Categories</a></li><li role="treeitem" rel="all" aria-selected="false" aria-level="1" aria-labelledby="1g_anchor" aria-expanded="false" id="1g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="1g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_all jstree-themeicon-custom" role="presentation"></i>Potentially Liable</a></li><li role="treeitem" rel="block" aria-selected="false" aria-level="1" aria-labelledby="2g_anchor" aria-expanded="false" id="2g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="2g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_block jstree-themeicon-custom" role="presentation"></i>Adult/Mature Content</a></li><li role="treeitem" rel="allow" aria-selected="false" aria-level="1" aria-labelledby="4g_anchor" aria-expanded="false" id="4g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="4g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_allow jstree-themeicon-custom" role="presentation"></i>Bandwidth Consuming</a></li><li role="treeitem" rel="block" aria-selected="false" aria-level="1" aria-labelledby="5g_anchor" aria-expanded="false" id="5g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="5g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_block jstree-themeicon-custom" role="presentation"></i>Security Risk</a></li><li role="treeitem" rel="allow" aria-selected="false" aria-level="1" aria-labelledby="6g_anchor" aria-expanded="false" id="6g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="6g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_allow jstree-themeicon-custom" role="presentation"></i>General Interest - Personal</a></li><li role="treeitem" rel="allow" aria-selected="false" aria-level="1" aria-labelledby="7g_anchor" aria-expanded="false" id="7g" class="jstree-node  jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="7g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_allow jstree-themeicon-custom" role="presentation"></i>General Interest - Business</a></li><li role="treeitem" rel="block" aria-selected="false" aria-level="1" aria-labelledby="21g_anchor" aria-expanded="false" id="21g" class="jstree-node  jstree-closed jstree-last"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://10.5.21.29/p/utm/wf/profile/edit/default/?#" tabindex="-1" id="21g_anchor"><i class="jstree-icon jstree-checkbox" role="presentation"></i><i class="jstree-icon jstree-themeicon utm_actions action_block jstree-themeicon-custom" role="presentation"></i>Unrated</a></li></ul></div>
+        <input type="hidden" id="rmsg_group" name="replacemsg-group" value="" placeholder=" ">
+      </div>
+        <div class="depends ">
+          <label>
+              <label>Category Usage Quota</label>
+              <f-icon class="fa-help-info qtip-popup" original-title="Can be applied to categories set to Monitor, Warning and Authenticate" tooltip-id="_r1r0ht0uf"></f-icon>
+          </label>
+          <div class="qlist-field">
+              <div f-ng-app="qlistMenuBarWebFilterQuotaTableMenu" class="qlist-menu-bar ng-scope">
+                  <div f-menu-bar="" qlist-element="qlistElem" class="ng-isolate-scope menu-bar">
+                      <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --><div f-menu-item-button="" click="createNew()" enabled="_enabled !== false" ng-if="!$root.ADMIN_RO &amp;&amp; menu.menuBar" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-plus ng-scope"></f-icon><span class="ng-binding ng-scope">Create New</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope" ng-hide="menu.popUpMenu"></div></div></div>
+                  </div>
+                  
+              </div>
+              <div id="wf_quota" class="qlist inline-qlist" style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div class="qlist-fixed-head"></div><div class="qlist-table"><table><thead><tr class="heading"><th><div class="ui-resizable">Category<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th><div class="ui-resizable">Quota<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th></tr></thead><tbody><tr class="empty_row nodrag qlist_row qlist_skip_row unselectable" can_edit="0" can_delete="0"><td class="" colspan="2">No matching entries found</td></tr></tbody></table></div></div>
+          </div>
+        </div>
+    </div>
+</section>
+  <label for="override_checked" class=" section-title depends ">
+      <input type="checkbox" name="override_checked" id="override_checked" value="1" class="toggle-switch dependency_trigger" placeholder=" ">
+      <label for="override_checked"></label>
+      <h3>Allow users to override blocked categories</h3>
+  </label>
+    <section class="depends" data-show-if-checked="#override_checked" style="display: none;">
+        <div class="field">
+            <label for="override_ovrd-user-group">Groups that can override</label>
+            <div>
+              <div class="select-widget" tabindex="0"><div class="selected-entries"></div><div class="add-placeholder"><f-icon class="fa-plus icon-sm"></f-icon></div></div><input type="text" id="override_ovrd-user-group" required="required" name="override.ovrd-user-group" value="[]" placeholder=" " data-select-widget="true" class="hidden" aria-required="true">
+            </div>
+        </div>
+        <div class="field">
+            <label for="override_profile">Profile can switch to</label>
+            <div>
+              <div class="select-widget" tabindex="0"><div class="selected-entries"></div><div class="add-placeholder"><f-icon class="fa-plus icon-sm"></f-icon></div></div><input type="text" id="override_profile" required="required" name="override.profile" value="[]" placeholder=" " data-select-widget="true" class="hidden" aria-required="true">
+            </div>
+        </div>
+        <div class="field">
+            <label for="override_ovrd-scope">Switch applies to</label>
+            <div>
+              <div class="radio-group">
+
+      <input id="ovrd-scope-user" name="override.ovrd-scope" type="radio" value="user" checked="checked" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-scope-user">
+User      </label>
+
+      <input id="ovrd-scope-user-group" name="override.ovrd-scope" type="radio" value="user-group" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-scope-user-group">
+User Group      </label>
+
+      <input id="ovrd-scope-ip" name="override.ovrd-scope" type="radio" value="ip" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-scope-ip">
+IP      </label>
+
+      <input id="ovrd-scope-ask" name="override.ovrd-scope" type="radio" value="ask" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-scope-ask">
+Ask      </label>
+  </div>
+            </div>
+        </div>
+        <div class="warning-message depends" data-show-if-checked="#ovrd-scope-user, #ovrd-scope-user-group" style="display: none;">
+            <f-icon class="fa-warning"></f-icon>
+            <div class="message-content">
+The original user or group must be specified as the 'Source' in firewall policies using this profile            </div>
+        </div>
+        <div class="field">
+            <label for="ovrd-dur-mode">Switch Duration</label>
+            <div>
+                <div class="radio-group">
+
+      <input id="ovrd-dur-mode-constant" name="override.ovrd-dur-mode" type="radio" value="constant" checked="checked" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-dur-mode-constant">
+Predefined      </label>
+
+      <input id="ovrd-dur-mode-ask" name="override.ovrd-dur-mode" type="radio" value="ask" placeholder=" " class="dependency_trigger">
+      <label for="ovrd-dur-mode-ask">
+Ask      </label>
+  </div>
+            </div>
+        </div>
+        <div class="field depends override-duration" data-show-if-checked="#ovrd-dur-mode-constant" style="display: none;">
+            <label for="override_ovrd-dur"></label>
+            <div class="wrappable">
+              <div>
+                <input type="number" name="override.ovrd-dur.d" id="override_ovrd-dur_d" min="0" max="364" size="2" value="" class="depends" data-show-if-checked="#name-day" placeholder=" ">
+                <span>Day(s)</span>
+              </div>
+              <div>
+                <input type="number" name="override.ovrd-dur.h" id="override_ovrd-dur_h" min="0" max="23" size="2" value="" class="depends" data-show-if-checked="#name-hour" placeholder=" ">
+                <span>Hour(s)</span>
+              </div>
+              <div>
+                <input type="number" name="override.ovrd-dur.m" id="override_ovrd-dur_m" min="0" max="59" size="2" value="15" class="depends" data-show-if-checked="#name-min" placeholder=" ">
+                <span>Minute(s)</span>
+              </div>
+            </div>
+        </div>
+</section>
+
+
+<label class="section-title depends ">
+    <input type="checkbox" class="visual-toggle dependency_trigger" id="search-engine-toggle" checked="checked" placeholder=" ">
+    <label for="search-engine-toggle"></label>
+    <h3>Search Engines</h3>
+</label>
+<section class="depends" data-show-if-checked="#search-engine-toggle">
+    <div class="field">
+        <label for="safe_search">
+          <div class="flex-space-between">
+            <span for="safe_search">Enforce 'Safe Search' on Google, Yahoo!, Bing, Yandex</span>
+            <input type="checkbox" id="safe_search" name="web.safe-search" value="url header" class="toggle-switch" placeholder=" ">
+            <label for="safe_search"></label>
+          </div>
+        </label>
+    </div>
+    <div class="field">
+        <label for="youtube_edu">
+          <div class="flex-space-between">
+            <span for="youtube_edu">Restrict YouTube Access</span>
+            <input type="checkbox" id="youtube_edu" name="youtube_edu_safe-search" value="header" class="toggle-switch dependency_trigger" placeholder=" ">
+            <label for="youtube_edu"></label>
+          </div>
+        </label>
+        <div class="depends" data-show-if-checked="#youtube_edu" style="display: none;">
+            <div class="radio-group">
+                <input type="radio" name="youtube-restrict" value="strict" id="youtube-restrict_strict" checked="checked" placeholder=" ">
+                <label for="youtube-restrict_strict">Strict</label>
+                <input type="radio" name="youtube-restrict" value="moderate" id="youtube-restrict_moderate" placeholder=" ">
+                <label for="youtube-restrict_moderate">Moderate</label>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label for="web_log-search">
+          <input type="hidden" name="web.log-search" value="disable" placeholder=" ">
+          <div class="flex-space-between">
+              <span for="web_log-search">Log all search keywords</span>
+              <input type="checkbox" name="web.log-search" id="web_log-search" value="enable" class="toggle-switch" placeholder=" ">
+              <label for="web_log-search"></label>
+          </div>
+        </label>
+    </div>
+</section>
+
+<label class="section-title">
+    <input type="checkbox" class="visual-toggle dependency_trigger" id="static-url-filter-toggle" checked="checked" placeholder=" ">
+    <label for="static-url-filter-toggle"></label>
+    <h3>Static URL Filter</h3>
+</label>
+<section class="depends" data-show-if-checked="#static-url-filter-toggle">
+    <div class="field depends ">
+      <label for="options_block-invalid-url">
+          <div class="flex-space-between">
+            <span>Block invalid URLs</span>
+            <input type="checkbox" name="options" id="options_block-invalid-url" value="block-invalid-url" class="toggle-switch" placeholder=" ">
+            <label for="options_block-invalid-url"></label>
+          </div>
+      </label>
+    </div>
+
+<div class="field">
+    <label for="web_urlfilter-table">
+        <div class="flex-space-between">
+          <span>
+URL Filter          </span>
+          <input type="checkbox" id="web_urlfilter-table" name="web.urlfilter-table_checked" class="toggle-switch dependency_trigger" value="1" placeholder=" ">
+          <label for="web_urlfilter-table"></label>
+        </div>
+    </label>
+</div>
+<div class="qlist-field depends" data-show-if-checked="#web_urlfilter-table" style="display: none;">
+    <div f-ng-app="qlistMenuBarUrlFilterTableMenu" class="qlist-menu-bar ng-scope">
+        <div f-menu-bar="" qlist-element="qlistElem" class="ng-isolate-scope menu-bar">
+            <!-- ngInclude: '/ng/menu/utm/urlfilter_list_menu.html' | cache_path --><div ng-include="&#39;/ng/menu/utm/urlfilter_list_menu.html&#39; | cache_path" class="ng-scope"><div ng-controller="UrlFilterListMenuController" class="ng-scope">
+    <div class="left-menu-items">
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="create()" ng-if="!$root.ADMIN_RO" ng-hide="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-plus ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Create</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="edit()" enabled="canEdit" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-pencil ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Edit</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="canDelete" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-trash-o ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Delete</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="insertAbove()" ng-if="!$root.ADMIN_RO" ng-show="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item ng-hide"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa fa-angle-double-up ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Insert Above</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="insertBelow()" ng-if="!$root.ADMIN_RO" ng-show="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item ng-hide"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa fa-angle-double-down ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Insert Below</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+    </div>
+    <div class="center-menu-items" ng-hide="menu.popUpMenu">
+        <div f-menu-item-qlist-search="" class="ng-isolate-scope menu-item menu-item-search"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div>
+    </div>
+</div>
+</div>
+        </div>
+        
+    </div>
+    <div id="website_filter" class="qlist inline-qlist" style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div class="qlist-fixed-head"></div><div class="qlist-table"><table><thead><tr class="heading ui-sortable" style=""><th validate="required" class="sortable ui-sortable-handle"><div class="ui-resizable">URL<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Type<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Action<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Status<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th></tr></thead><tbody class="sortable"><tr class="empty_row nodrag qlist_row qlist_skip_row unselectable" can_edit="0" can_delete="0"><td class="" colspan="4">No matching entries found</td></tr></tbody></table></div></div>
+</div>
+    <div class="field">
+      <label for="enable_blacklist">
+        <div class="flex-space-between">
+          <span for="enable_blacklist">Block malicious URLs discovered by FortiSandbox</span>
+          <input type="checkbox" id="enable_blacklist" name="web_blacklist" class="toggle-switch" placeholder=" ">
+          <label for="enable_blacklist"></label>
+        </div>
+      </label>
+    </div>
+    <div class="field depends " data-show-if-checked="! #mode_dns">
+          <label for="wfcontent-table">
+              <div class="flex-space-between">
+              <span>Web Content Filter</span>
+              <input type="checkbox" id="wfcontent-table" name="bword-table_checked" value="1" class="toggle-switch dependency_trigger" placeholder=" ">
+              <label for="wfcontent-table"></label>
+              </div>
+          </label>
+    </div>
+    <div class="qlist-field depends" data-show-if-checked="#wfcontent-table" style="display: none;">
+        <div f-ng-app="qlistMenuBarWebContentFilterTableMenu" class="qlist-menu-bar ng-scope">
+            <div f-menu-bar="" qlist-element="qlistElem" class="ng-isolate-scope menu-bar">
+                <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --><div f-menu-item-button="" click="createNew()" enabled="_enabled !== false" ng-if="!$root.ADMIN_RO &amp;&amp; menu.menuBar" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-plus ng-scope"></f-icon><span class="ng-binding ng-scope">Create New</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope" ng-hide="menu.popUpMenu"></div></div></div>
+            </div>
+            
+        </div>
+        <div id="webcontent_filter" class="qlist inline-qlist" style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div class="qlist-fixed-head"></div><div class="qlist-table"><table><thead><tr class="heading ui-sortable" style=""><th class="sortable ui-sortable-handle"><div class="ui-resizable">Pattern Type<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Pattern<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Language<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Action<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th><th class="sortable ui-sortable-handle"><div class="ui-resizable">Status<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th></tr></thead><tbody><tr class="empty_row nodrag qlist_row qlist_skip_row unselectable" can_edit="0" can_delete="0"><td class="" colspan="5">No matching entries found</td></tr></tbody></table></div></div>
+    </div>
+</section>
+
+
+<label class="section-title">
+    <input type="checkbox" class="visual-toggle dependency_trigger" id="rating-option-toggle" checked="checked" placeholder=" ">
+    <label for="rating-option-toggle"></label>
+    <h3>Rating Options</h3>
+</label>
+<section class="depends" data-show-if-checked="#rating-option-toggle">
+        <div class="field depends" data-show-if-checked="! #mode_dns">
+      <label for="ftgd-wf_options_error-allow">
+        <div class="flex-space-between">
+          <span for="ftgd-wf_options_error-allow">Allow websites when a rating error occurs</span>
+          <input type="checkbox" name="ftgd-wf.options" id="ftgd-wf_options_error-allow" value="error-allow" class="toggle-switch" placeholder=" ">
+          <label for="ftgd-wf_options_error-allow"></label>
+        </div>
+      </label>
+    </div>
+        <div class="field depends" none="">
+      <label for="ftgd-wf_options_rate-server-ip">
+        <div class="flex-space-between">
+          <span for="ftgd-wf_options_rate-server-ip">Rate URLs by domain and IP Address</span>
+          <input type="checkbox" name="ftgd-wf.options" id="ftgd-wf_options_rate-server-ip" value="rate-server-ip" class="toggle-switch" placeholder=" ">
+          <label for="ftgd-wf_options_rate-server-ip"></label>
+        </div>
+      </label>
+    </div>
+    <div class="field depends ">
+      <label for="rate-image-urls"><span class="toggle-label"><span>Rate images by URL</span><input id="rate-image-urls" name="rate-image-urls" type="checkbox" value="enable" class="toggle-switch dependency_trigger" checked="checked" placeholder=" ">
+  <label for="rate-image-urls"></label></span></label>
+    </div>
+    <div class="depends" data-show-if-checked="#rate-image-urls">
+      <div class="info-message">
+        <f-icon class="fa-help-info"></f-icon>
+        <div class="message-content">
+Blocked images will be replaced with blanks        </div>
+      </div>
+    </div>
+</section>
+
+
+<label class="section-title depends ">
+    <input type="checkbox" class="visual-toggle dependency_trigger" id="proxy-option-toggle" checked="checked" placeholder=" ">
+    <label for="proxy-option-toggle"></label>
+    <h3>Proxy Options</h3>
+</label>
+<section class="depends" data-show-if-checked="#proxy-option-toggle">
+      <div class="field">
+          <label for="restrict_google_accounts">
+            <div class="flex-space-between">
+              <span>Restrict Google account usage to specific domains</span>
+              <input type="checkbox" id="restrict_google_accounts" name="restrict_google_accounts" class="toggle-switch dependency_trigger" placeholder=" ">
+              <label for="restrict_google_accounts"></label>
+            </div>
+          </label>
+      </div>
+      <div class="qlist-field depends" data-show-if-checked="#restrict_google_accounts" style="display: none;">
+          <div f-ng-app="qlistMenuBar-restrict_google_accounts" class="qlist-menu-bar ng-scope">
+              <div f-menu-bar="" qlist-element="qlistElem" qlist-selector="&#39;#restrict_access_domains&#39;" class="ng-isolate-scope menu-bar">
+                  <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --><div f-menu-item-button="" click="createNew()" enabled="_enabled !== false" ng-if="!$root.ADMIN_RO &amp;&amp; menu.menuBar" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-plus ng-scope"></f-icon><span class="ng-binding ng-scope">Create New</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope" ng-hide="menu.popUpMenu"></div></div></div>
+              </div>
+              
+          </div>
+          <div id="restrict_access_domains" class="qlist inline-qlist" style="touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div class="qlist-fixed-head"></div><div class="qlist-table"><table><thead><tr class="heading"><th validate="required url_noscheme"><div class="ui-resizable">Domain<div class="ui-resizable-handle ui-resizable-e" style="z-index: 1;"></div></div></th></tr></thead><tbody><tr class="empty_row nodrag qlist_row qlist_skip_row unselectable" can_edit="0" can_delete="0"><td class="" colspan="1">No matching entries found</td></tr></tbody></table></div></div>
+      </div>
+
+        <div class="field depends" none="">
+      <label for="ftgd-wf_options_http-err-detail">
+        <div class="flex-space-between">
+          <span for="ftgd-wf_options_http-err-detail">Provide details for blocked HTTP 4xx and 5xx errors</span>
+          <input type="checkbox" name="ftgd-wf.options" id="ftgd-wf_options_http-err-detail" value="http-err-detail" class="toggle-switch" placeholder=" ">
+          <label for="ftgd-wf_options_http-err-detail"></label>
+        </div>
+      </label>
+    </div>
+    <div class="field">
+        <label for="post-action_checked">HTTP POST Action</label>
+        <div>
+          <div class="radio-group">
+
+      <input id="post-action-normal" name="post-action" type="radio" value="normal" checked="checked" placeholder=" ">
+      <label for="post-action-normal">
+Allow      </label>
+
+      <input id="post-action-block" name="post-action" type="radio" value="block" placeholder=" ">
+      <label for="post-action-block">
+Block      </label>
+  </div>
+        </div>
+    </div>
+        <div class="field depends" none="">
+      <label for="options_javafilter">
+        <div class="flex-space-between">
+            <span for="options_javafilter">Remove Java Applets</span>
+            <input type="checkbox" name="options" id="options_javafilter" value="javafilter" class="toggle-switch" placeholder=" ">
+            <label for="options_javafilter"></label>
+        </div>
+      </label>
+    </div>
+        <div class="field depends" none="">
+      <label for="options_activexfilter">
+        <div class="flex-space-between">
+            <span for="options_activexfilter">Remove ActiveX</span>
+            <input type="checkbox" name="options" id="options_activexfilter" value="activexfilter" class="toggle-switch" placeholder=" ">
+            <label for="options_activexfilter"></label>
+        </div>
+      </label>
+    </div>
+        <div class="field depends" none="">
+      <label for="options_cookiefilter">
+        <div class="flex-space-between">
+            <span for="options_cookiefilter">Remove Cookies</span>
+            <input type="checkbox" name="options" id="options_cookiefilter" value="cookiefilter" class="toggle-switch" placeholder=" ">
+            <label for="options_cookiefilter"></label>
+        </div>
+      </label>
+    </div>
+</section>
+
+<input type="hidden" id="ftgd_cat" name="ftgd_cat" placeholder=" ">
+<input type="hidden" id="url_filter_entries" name="urlfilter.entries" value="" placeholder=" ">
+<input type="hidden" id="wfcontent_entries" name="wfcontent.entries" value="" placeholder=" ">
+<input type="hidden" name="redir" value="" placeholder=" ">
+<input type="hidden" name="restrict_google_domains" value="[]" placeholder=" ">
+</div>
+
+<div class="footer">
+<button class="primary" id="submit_apply" type="submit">
+    <f-icon class="fa-loading busy-only"></f-icon>
+Apply</button>
+
+
+
+</div>
+<input type="hidden" name="mkey" id="mkey" value="default" placeholder=" ">
+</form>
+</div>
+
+<div id="url_filter_dialog" class="dialog dependency_ignore_visibility" style="display: none;">
+    <form class="valid" novalidate="novalidate">
+    <div class="content">
+    <section>
+        <div class="field">
+            <label>URL</label>
+            <div class="uffilter-container depends" data-show-if-checked="#uf_simple_radio">
+                <input type="text" class="url_filter_url valid dlg_input SimpleUrlChecker" name="url" required="required" id="url_filter_url_simple" placeholder=" ">
+            </div>
+            <div class="uffilter-container depends" data-show-if-checked="#uf_regex_radio" style="display: none;">
+                <input type="text" class="url_filter_url valid dlg_input regex" name="url" required="required" id="url_filter_url_regex" placeholder=" ">
+            </div>
+            <div class="uffilter-container depends" data-show-if-checked="#uf_wildcard_radio" style="display: none;">
+                <input type="text" class="url_filter_url valid dlg_input wildcard depends" name="url" required="required" id="url_filter_url_wildcard" placeholder=" ">
+            </div>
+            <input type="hidden" id="url_filter_url_hidden" name="url" value="" placeholder=" ">
+        </div>
+
+        <div class="field">
+            <label for="url_filter_type">Type</label>
+            <div>
+                <div id="url_filter_type" class="radio-group url_filter_radios">
+                    <input type="radio" name="type" value="simple" id="uf_simple_radio" checked="checked" class="dependency_trigger" placeholder=" ">
+                    <label for="uf_simple_radio">Simple</label>
+                    <input type="radio" name="type" value="regex" id="uf_regex_radio" class="dependency_trigger" placeholder=" ">
+                    <label for="uf_regex_radio">Reg. Expression</label>
+                    <input type="radio" name="type" value="wildcard" id="uf_wildcard_radio" class="dependency_trigger" placeholder=" ">
+                    <label for="uf_wildcard_radio">Wildcard</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="url_filter_action">Action</label>
+            <div>
+                <div id="url_filter_action" class="radio-group url_filter_radios">
+                      <input type="radio" name="action" value="exempt" id="uf_exempt_radio" checked="checked" class="dependency_trigger" placeholder=" ">
+                      <label class="" for="uf_exempt_radio">
+Exempt</label>
+                      <input type="radio" name="action" value="block" id="uf_block_radio" class="dependency_trigger" placeholder=" ">
+                      <label class="" for="uf_block_radio">
+Block</label>
+                      <input type="radio" name="action" value="allow" id="uf_allow_radio" class="dependency_trigger" placeholder=" ">
+                      <label class="" for="uf_allow_radio">
+Allow</label>
+                      <input type="radio" name="action" value="monitor" id="uf_monitor_radio" class="dependency_trigger" placeholder=" ">
+                      <label class="" for="uf_monitor_radio">
+Monitor</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="url_filter_status">
+                <div class="flex-space-between">
+                    <span>Status</span>
+                    <input id="url_filter_status" class="url_filter_checkbox toggle-switch" type="checkbox" name="status" value="enable" placeholder=" ">
+                    <label for="url_filter_status"></label>
+                </div>
+            </label>
+        </div>
+
+    </section>
+    </div>
+    </form>
+</div>
+<div id="wc_filter_dialog" class="dialog" style="display: none;">
+    <form class="valid" novalidate="novalidate">
+    <div class="content">
+    <section>
+        <div class="field">
+            <label for="wc_filter_pattern-type">Pattern Type</label>
+            <div id="wc_filter_pattern-type" class="radio-group wc_filter_radios">
+                <input type="radio" name="type" value="wildcard" id="wc_wildcard_radio" placeholder=" " class="dependency_trigger">
+                <label for="wc_wildcard_radio">Wildcard</label>
+                <input type="radio" name="type" value="regex" id="wc_regex_radio" placeholder=" " class="dependency_trigger">
+                <label for="wc_regex_radio">Reg. Expression</label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="wc_filter_name">Pattern</label>
+            <input type="text" id="wc_filter_name" class="valid dlg_input" name="name" required="required" placeholder=" ">
+        </div>
+
+        <div class="field">
+            <label for="wc_filter_lang">Language</label>
+            <select id="wc_filter_lang" class="wc_filter_select dlg_select" name="lang">
+                <option value="western">Western</option>
+                <option value="simch">Simplified Chinese</option>
+                <option value="trach">Traditional Chinese</option>
+                <option value="japanese">Japanese</option>
+                <option value="korean">Korean</option>
+                <option value="french">French</option>
+                <option value="thai">Thai</option>
+                <option value="spanish">Spanish</option>
+                <option value="cyrillic">Cyrillic</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="wc_filter_action">Action</label>
+            <div id="wc_filter_action" class="radio-group wc_filter_radios">
+                <input type="radio" name="action" value="block" id="wc_block_radio" placeholder=" ">
+                <label for="wc_block_radio">Block</label>
+                <input type="radio" name="action" value="exempt" id="wc_exempt_radio" placeholder=" ">
+                <label for="wc_exempt_radio">Exempt</label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="wc_filter_status">
+                <div class="flex-space-between">
+                    <span>Status</span>
+                    <input id="wc_filter_status" class="wc_filter_checkbox toggle-switch" type="checkbox" name="status" value="enable" placeholder=" ">
+                    <label for="wc_filter_status"></label>
+                </div>
+            </label>
+        </div>
+    </section>
+    </div>
+    </form>
+</div>
+<div id="wf-cat-quota-dlg" class="dlg" style="display: none;">
+    <form class="valid" novalidate="novalidate">
+        <div id="quota-treeDivCat" class="ygtv-checkbox quota-tree"></div>
+        <div class="field">
+            <label>Quota Type</label>
+            <input type="radio" name="quota-type" id="quota-type-time" value="time" placeholder=" " class="dependency_trigger">
+            <label for="quota-type-time">Time</label>
+            <input type="radio" name="quota-type" id="quota-type-traffic" value="traffic" placeholder=" " class="dependency_trigger">
+            <label for="quota-type-traffic">Traffic</label>
+        </div>
+        <div class="field">
+            <label>Quota</label>
+            <div class="depends" data-show-if-checked="#quota-type-time" style="display: none;">
+                <input type="text" name="quota-time" id="quota-time" maxlength="5" size="5" class="depends quota-input" data-enable-if-checked="#quota-type-time" placeholder=" " disabled="">
+                <select name="quota-unit-time" id="quota-unit-time">
+                        <option value="0" data-unit="3600">Hour(s)</option>
+                        <option value="1" data-unit="60">Minute(s)</option>
+                        <option value="2" data-unit="1">Second(s)</option>
+                </select>
+            </div>
+            <div class="depends" data-show-if-checked="#quota-type-traffic" style="display: none;">
+                <input type="text" name="quota-traffic" id="quota-traffic" maxlength="5" size="5" class="depends quota-input" data-enable-if-checked="#quota-type-traffic" placeholder=" " disabled="">
+                <select name="quota-unit-traffic" id="quota-unit-traffic">
+                        <option value="B">Bytes</option>
+                        <option value="KB">KB</option>
+                        <option value="MB">MB</option>
+                        <option value="GB">GB</option>
+                </select>
+            </div>
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <span id="quota-error" style="display: none"></span>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">$.addLang([{"path":"webfilter\/profile","sec":"profile"}])</script><script type="text/javascript">
+var is_licensed = true;
+var is_wf_adv_visible = 0;
+var restrict_google_domains_readonly = false;
+var g_redir_url = '/p/utm/wf/profile/';
+var g_cat_action_url='/p/utm/wf/filter/action/default/';
+var CL_GRP_LCAT = 22;
+var categoryGroups = [];
+var catsAction = [];
+var grpMembers = {};
+var quota = {};
+var urlfilter_id = 0;
+var urlfilter_entries = [];
+var wfcontent_id = 0;
+var wfcontent_entries = [];
+var bword_threshold = 10;
+var is_wc_dlg_gen = false;
+categoryGroups.push(new IdentityGroup(22, "Local Categories"));
+grpMembers[22] = [];
+grpMembers[22].push(new IdentityCategory({'id': 140, 'name': "custom1" }));
+        catsAction[140] = {'action': "disable"};
+grpMembers[22].push(new IdentityCategory({'id': 141, 'name': "custom2" }));
+        catsAction[141] = {'action': "disable"};
+categoryGroups.push(new IdentityGroup(1, "Potentially Liable"));
+grpMembers[1] = [];
+grpMembers[1].push(new IdentityCategory({'id': 83, 'name': "Child Abuse" }));
+grpMembers[1].push(new IdentityCategory({'id': 5, 'name': "Discrimination" }));
+grpMembers[1].push(new IdentityCategory({'id': 1, 'name': "Drug Abuse" }));
+grpMembers[1].push(new IdentityCategory({'id': 6, 'name': "Explicit Violence" }));
+grpMembers[1].push(new IdentityCategory({'id': 12, 'name': "Extremist Groups" }));
+grpMembers[1].push(new IdentityCategory({'id': 3, 'name': "Hacking" }));
+grpMembers[1].push(new IdentityCategory({'id': 4, 'name': "Illegal or Unethical" }));
+grpMembers[1].push(new IdentityCategory({'id': 62, 'name': "Plagiarism" }));
+grpMembers[1].push(new IdentityCategory({'id': 59, 'name': "Proxy Avoidance" }));
+categoryGroups.push(new IdentityGroup(2, "Adult/Mature Content"));
+grpMembers[2] = [];
+grpMembers[2].push(new IdentityCategory({'id': 7, 'name': "Abortion" }));
+grpMembers[2].push(new IdentityCategory({'id': 9, 'name': "Advocacy Organizations" }));
+grpMembers[2].push(new IdentityCategory({'id': 64, 'name': "Alcohol" }));
+grpMembers[2].push(new IdentityCategory({'id': 2, 'name': "Alternative Beliefs" }));
+grpMembers[2].push(new IdentityCategory({'id': 15, 'name': "Dating" }));
+grpMembers[2].push(new IdentityCategory({'id': 11, 'name': "Gambling" }));
+grpMembers[2].push(new IdentityCategory({'id': 66, 'name': "Lingerie and Swimsuit" }));
+grpMembers[2].push(new IdentityCategory({'id': 57, 'name': "Marijuana" }));
+grpMembers[2].push(new IdentityCategory({'id': 13, 'name': "Nudity and Risque" }));
+grpMembers[2].push(new IdentityCategory({'id': 8, 'name': "Other Adult Materials" }));
+grpMembers[2].push(new IdentityCategory({'id': 14, 'name': "Pornography" }));
+grpMembers[2].push(new IdentityCategory({'id': 63, 'name': "Sex Education" }));
+grpMembers[2].push(new IdentityCategory({'id': 67, 'name': "Sports Hunting and War Games" }));
+grpMembers[2].push(new IdentityCategory({'id': 65, 'name': "Tobacco" }));
+grpMembers[2].push(new IdentityCategory({'id': 16, 'name': "Weapons (Sales)" }));
+categoryGroups.push(new IdentityGroup(4, "Bandwidth Consuming"));
+grpMembers[4] = [];
+grpMembers[4].push(new IdentityCategory({'id': 24, 'name': "File Sharing and Storage" }));
+grpMembers[4].push(new IdentityCategory({'id': 19, 'name': "Freeware and Software Downloads" }));
+grpMembers[4].push(new IdentityCategory({'id': 75, 'name': "Internet Radio and TV" }));
+grpMembers[4].push(new IdentityCategory({'id': 76, 'name': "Internet Telephony" }));
+grpMembers[4].push(new IdentityCategory({'id': 72, 'name': "Peer-to-peer File Sharing" }));
+grpMembers[4].push(new IdentityCategory({'id': 25, 'name': "Streaming Media and Download" }));
+categoryGroups.push(new IdentityGroup(5, "Security Risk"));
+grpMembers[5] = [];
+grpMembers[5].push(new IdentityCategory({'id': 88, 'name': "Dynamic DNS" }));
+grpMembers[5].push(new IdentityCategory({'id': 26, 'name': "Malicious Websites" }));
+grpMembers[5].push(new IdentityCategory({'id': 90, 'name': "Newly Observed Domain" }));
+grpMembers[5].push(new IdentityCategory({'id': 91, 'name': "Newly Registered Domain" }));
+grpMembers[5].push(new IdentityCategory({'id': 61, 'name': "Phishing" }));
+grpMembers[5].push(new IdentityCategory({'id': 86, 'name': "Spam URLs" }));
+categoryGroups.push(new IdentityGroup(6, "General Interest - Personal"));
+grpMembers[6] = [];
+grpMembers[6].push(new IdentityCategory({'id': 17, 'name': "Advertising" }));
+grpMembers[6].push(new IdentityCategory({'id': 29, 'name': "Arts and Culture" }));
+grpMembers[6].push(new IdentityCategory({'id': 89, 'name': "Auction" }));
+grpMembers[6].push(new IdentityCategory({'id': 18, 'name': "Brokerage and Trading" }));
+grpMembers[6].push(new IdentityCategory({'id': 77, 'name': "Child Education" }));
+grpMembers[6].push(new IdentityCategory({'id': 82, 'name': "Content Servers" }));
+grpMembers[6].push(new IdentityCategory({'id': 71, 'name': "Digital Postcards" }));
+grpMembers[6].push(new IdentityCategory({'id': 85, 'name': "Domain Parking" }));
+grpMembers[6].push(new IdentityCategory({'id': 54, 'name': "Dynamic Content" }));
+grpMembers[6].push(new IdentityCategory({'id': 30, 'name': "Education" }));
+grpMembers[6].push(new IdentityCategory({'id': 28, 'name': "Entertainment" }));
+grpMembers[6].push(new IdentityCategory({'id': 58, 'name': "Folklore" }));
+grpMembers[6].push(new IdentityCategory({'id': 20, 'name': "Games" }));
+grpMembers[6].push(new IdentityCategory({'id': 40, 'name': "Global Religion" }));
+grpMembers[6].push(new IdentityCategory({'id': 33, 'name': "Health and Wellness" }));
+grpMembers[6].push(new IdentityCategory({'id': 69, 'name': "Instant Messaging" }));
+grpMembers[6].push(new IdentityCategory({'id': 34, 'name': "Job Search" }));
+grpMembers[6].push(new IdentityCategory({'id': 55, 'name': "Meaningless Content" }));
+grpMembers[6].push(new IdentityCategory({'id': 35, 'name': "Medicine" }));
+grpMembers[6].push(new IdentityCategory({'id': 36, 'name': "News and Media" }));
+grpMembers[6].push(new IdentityCategory({'id': 70, 'name': "Newsgroups and Message Boards" }));
+grpMembers[6].push(new IdentityCategory({'id': 87, 'name': "Personal Privacy" }));
+grpMembers[6].push(new IdentityCategory({'id': 48, 'name': "Personal Vehicles" }));
+grpMembers[6].push(new IdentityCategory({'id': 80, 'name': "Personal Websites and Blogs" }));
+grpMembers[6].push(new IdentityCategory({'id': 38, 'name': "Political Organizations" }));
+grpMembers[6].push(new IdentityCategory({'id': 78, 'name': "Real Estate" }));
+grpMembers[6].push(new IdentityCategory({'id': 39, 'name': "Reference" }));
+grpMembers[6].push(new IdentityCategory({'id': 79, 'name': "Restaurant and Dining" }));
+grpMembers[6].push(new IdentityCategory({'id': 42, 'name': "Shopping" }));
+grpMembers[6].push(new IdentityCategory({'id': 37, 'name': "Social Networking" }));
+grpMembers[6].push(new IdentityCategory({'id': 44, 'name': "Society and Lifestyles" }));
+grpMembers[6].push(new IdentityCategory({'id': 46, 'name': "Sports" }));
+grpMembers[6].push(new IdentityCategory({'id': 47, 'name': "Travel" }));
+grpMembers[6].push(new IdentityCategory({'id': 68, 'name': "Web Chat" }));
+grpMembers[6].push(new IdentityCategory({'id': 23, 'name': "Web-based Email" }));
+categoryGroups.push(new IdentityGroup(7, "General Interest - Business"));
+grpMembers[7] = [];
+grpMembers[7].push(new IdentityCategory({'id': 53, 'name': "Armed Forces" }));
+grpMembers[7].push(new IdentityCategory({'id': 49, 'name': "Business" }));
+grpMembers[7].push(new IdentityCategory({'id': 92, 'name': "Charitable Organizations" }));
+grpMembers[7].push(new IdentityCategory({'id': 31, 'name': "Finance and Banking" }));
+grpMembers[7].push(new IdentityCategory({'id': 43, 'name': "General Organizations" }));
+grpMembers[7].push(new IdentityCategory({'id': 51, 'name': "Government and Legal Organizations" }));
+grpMembers[7].push(new IdentityCategory({'id': 52, 'name': "Information Technology" }));
+grpMembers[7].push(new IdentityCategory({'id': 50, 'name': "Information and Computer Security" }));
+grpMembers[7].push(new IdentityCategory({'id': 95, 'name': "Online Meeting" }));
+grpMembers[7].push(new IdentityCategory({'id': 93, 'name': "Remote Access" }));
+grpMembers[7].push(new IdentityCategory({'id': 41, 'name': "Search Engines and Portals" }));
+grpMembers[7].push(new IdentityCategory({'id': 81, 'name': "Secure Websites" }));
+grpMembers[7].push(new IdentityCategory({'id': 94, 'name': "Web Analytics" }));
+grpMembers[7].push(new IdentityCategory({'id': 56, 'name': "Web Hosting" }));
+grpMembers[7].push(new IdentityCategory({'id': 84, 'name': "Web-based Applications" }));
+categoryGroups.push(new IdentityGroup(21, "Unrated"));
+grpMembers[21] = [];
+grpMembers[21].push(new IdentityCategory({'id': 192, 'name': "Unrated" }));
+catsAction[2] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[7] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[8] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[9] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[11] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[12] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[13] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[14] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[15] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[16] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[192] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[57] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[63] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[64] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[65] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[66] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[67] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[26] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[61] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[86] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[88] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[90] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+catsAction[91] = {
+    'action': "block",
+    'warnDuration': 300,    'usrgrp': []
+};
+
+</script>
+<script>
+$(document).ready(function() {
+  $('textarea[expand]').textarea();
+});
+</script>
+
+<div f-pop-up-menu="" qlist-element="qlistElem" class="ng-isolate-scope hidden pop-up-menu">
+                <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --><div f-menu-item-button="" click="editCli()" enabled="_enabled" class="mini-hide ng-scope ng-isolate-scope menu-item" ng-if="!$root.ADMIN_RO &amp;&amp; menu.popUpMenu"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-terminal ng-scope"></f-icon><span class="ng-binding ng-scope">Edit in CLI</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"></div></div></div>
+            </div><div f-pop-up-menu="" qlist-element="qlistElem" class="ng-isolate-scope hidden pop-up-menu">
+            <!-- ngInclude: '/ng/menu/utm/urlfilter_list_menu.html' | cache_path --><div ng-include="&#39;/ng/menu/utm/urlfilter_list_menu.html&#39; | cache_path" class="ng-scope"><div ng-controller="UrlFilterListMenuController" class="ng-scope">
+    <div class="left-menu-items">
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="create()" ng-if="!$root.ADMIN_RO" ng-hide="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item ng-hide"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-plus ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Create</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="edit()" enabled="canEdit" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-pencil ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Edit</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="canDelete" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa-trash-o ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Delete</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="insertAbove()" ng-if="!$root.ADMIN_RO" ng-show="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa fa-angle-double-up ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Insert Above</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+        <!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="insertBelow()" ng-if="!$root.ADMIN_RO" ng-show="menu.popUpMenu" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)">
+    <div class="flex-button-content" ng-transclude="">
+            <f-icon class="fa fa-angle-double-down ng-scope"></f-icon>
+            <span class="ng-binding ng-scope">Insert Below</span>
+        </div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO -->
+    </div>
+    <div class="center-menu-items ng-hide" ng-hide="menu.popUpMenu">
+        <div f-menu-item-qlist-search="" class="ng-isolate-scope menu-item menu-item-search"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div>
+    </div>
+</div>
+</div>
+        </div><div f-pop-up-menu="" qlist-element="qlistElem" class="ng-isolate-scope hidden pop-up-menu">
+                      <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --><div f-menu-item-button="" click="editCli()" enabled="_enabled" class="mini-hide ng-scope ng-isolate-scope menu-item" ng-if="!$root.ADMIN_RO &amp;&amp; menu.popUpMenu"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-terminal ng-scope"></f-icon><span class="ng-binding ng-scope">Edit in CLI</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"></div></div></div>
+                  </div><div f-pop-up-menu="" qlist-element="qlistElem" qlist-selector="&#39;#restrict_access_domains&#39;" class="ng-isolate-scope hidden pop-up-menu">
+                  <!-- ngInclude: '/ng/directives/menu/menu_items.html' | cache_path --><div ng-include="&#39;/ng/directives/menu/menu_items.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: '/ng/directives/menu/menu_items_base.html' | cache_path --><div ng-controller="QlistCustomMenuItems" ng-include="&#39;/ng/directives/menu/menu_items_base.html&#39; | cache_path" class="ng-scope"><!-- ngInclude: leftMenuItemsTemplate || '/ng/directives/menu/partials/defaults.html' | cache_path --><div class="left-menu-items ng-scope" ng-include="leftMenuItemsTemplate || &#39;/ng/directives/menu/partials/defaults.html&#39; | cache_path"><div f-menu-item-create="" create-fn="create" ng-hide="hideCreate" is-add="createIsAdd" enabled="createEnabled()" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO && menu.menuBar --></div><div f-menu-item-edit="" edit-fn="edit" ng-hide="hideEdit" enabled="editEnabled($entries)" class="ng-scope ng-isolate-scope menu-item"><div f-menu-item-button="" click="edit()" enabled="_enabled" class="ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon ng-class="{&#39;fa-pencil&#39;: !$root.ADMIN_RO &amp;&amp; !_viewOnly, &#39;ftnt-view&#39;: $root.ADMIN_RO || _viewOnly}" class="ng-scope fa-pencil"></f-icon><!-- ngIf: $root.ADMIN_RO || _viewOnly --><!-- ngIf: !$root.ADMIN_RO && !_viewOnly --><span ng-if="!$root.ADMIN_RO &amp;&amp; !_viewOnly" class="ng-binding ng-scope">Edit</span><!-- end ngIf: !$root.ADMIN_RO && !_viewOnly --></div>
+</button>
+</div></div><div f-menu-item-edit-cli="" edit-cli-fn="editCli" ng-show="showEditCli" enabled="editCliEnabled($entries)" class="ng-scope ng-isolate-scope menu-item mini-hide ng-hide"><!-- ngIf: !$root.ADMIN_RO && menu.popUpMenu --><div f-menu-item-button="" click="editCli()" enabled="_enabled" class="mini-hide ng-scope ng-isolate-scope menu-item" ng-if="!$root.ADMIN_RO &amp;&amp; menu.popUpMenu"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-terminal ng-scope"></f-icon><span class="ng-binding ng-scope">Edit in CLI</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO && menu.popUpMenu --></div><div f-menu-item-clone="" clone-fn="clone" ng-show="showClone" enabled="cloneEnabled($entries)" class="ng-scope ng-isolate-scope menu-item ng-hide"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="clone()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="ftnt-copy ng-scope"></f-icon><span class="ng-binding ng-scope">Clone</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div><div f-menu-item-delete="" delete-fn="delete" ng-hide="hideDelete" enabled="deleteEnabled($entries)" delete-entries-fn="deleteEntriesFn" class="ng-scope ng-isolate-scope menu-item"><!-- ngIf: !$root.ADMIN_RO --><div f-menu-item-button="" click="delete()" enabled="_enabled" ng-if="!$root.ADMIN_RO" class="ng-scope ng-isolate-scope menu-item"><button type="button" ng-class="{&#39;selected&#39;: selected}" class="" ng-disabled="disabled()" ng-click="onClick($event)" disabled="disabled">
+    <div class="flex-button-content" ng-transclude=""><f-icon class="fa-trash-o ng-scope"></f-icon><span class="ng-binding ng-scope">Delete</span></div>
+</button>
+</div><!-- end ngIf: !$root.ADMIN_RO --></div></div><div class="center-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"><div f-menu-item-qlist-search="" ng-show="showSearch" class="ng-isolate-scope menu-item menu-item-search ng-hide"><div class="search-container mini-hide" ng-class="{&#39;mini-hide&#39;: miniHideInput}"><input type="text" class="search-input ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search" ng-model="searchValue" ng-focus="searchFocussed()"><f-icon class="fa-times clear-search ng-hide" title="Clear Search" ng-show="searchValue" ng-click="clearSearch()"></f-icon></div><button type="button" class="do-search" ng-disabled="searching" ng-click="search()"><div class="flex-menu-content"><f-icon ng-class="{
+            &#39;fa-search&#39;: !searching,
+            &#39;fa-loading&#39;: searching
+        }" class="fa-search"></f-icon></div></button></div></div><div class="right-menu-items ng-scope ng-hide" ng-hide="menu.popUpMenu"></div></div></div>
+              </div></body></html>

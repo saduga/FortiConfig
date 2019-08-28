@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>FortiGate - chameleon-kvm29</title>
+
+    <link id="theme" href="css/main-green.css" rel="stylesheet" type="text/css" data-theme="green">
+    <link type="text/css" rel="stylesheet" href="css/avatars.css"> 
+  </head>
+  <body class="medium large">
+    <div id="app"></div>
+
+    <script src="./app.js" data-container="#app"></script>
+    <script>
+      if (process.env.BROWSER_SYNC_CLIENT_URL) {
+        const current = document.currentScript;
+        const script = document.createElement('script');
+        script.src = process.env.BROWSER_SYNC_CLIENT_URL;
+        script.async = true;
+        current.parentNode.insertBefore(script, current);
+      }
+    </script>
+  </body>
+</html>
