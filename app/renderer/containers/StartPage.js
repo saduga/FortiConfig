@@ -8,7 +8,7 @@ import Menu from '../components/Menu';
 class StartPage extends Component {
   render() {
     return (
-      <div>
+      <div style={{display: 'contents'}}>
         <Header />
         <Menu />
       </div>

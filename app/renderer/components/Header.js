@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
     return (
       <header>
@@ -9,16 +10,13 @@ export default class Header extends Component {
           <f-icon class="ftnt-fortinet-grid icon-xxl" />
         </div>
         <div className="platform">
-          <div>FortiGate VM64-KVM</div>
+          <div>{this.props.header.defaultUser}</div>
           <div className="hostname small-hide">
             <span
               f-object-tooltip=""
-              mkey="FGVM010000137260"
-              datasource="csfFortiGates"
               className="tooltip-hint"
-              tooltip-id="_1jgd4ksvd"
               style={{ display: 'inline-block' }}>
-              chameleon-kvm29
+              {this.props.header.deviceName}
             </span>
           </div>
         </div>
@@ -31,6 +29,7 @@ export default class Header extends Component {
             <f-icon class="ftnt-hamburger icon-lg" />
           </button>
         </div>
+        
         <div className="expandable">
           <button type="button" className="bare" f-pop-up-menu-toggle="notificationPopUpMenu">
             <div className="flex-button-content">
@@ -61,7 +60,7 @@ export default class Header extends Component {
           <button type="button" className="bare" f-pop-up-menu-toggle="adminPopUpMenu">
             <div className="flex-button-content">
               <div className="flex-button-content">
-                <div className="small-hide">admin</div>
+                <div className="small-hide">{this.props.header.defaultUser}</div>
                 <f-icon class="ftnt-user-o icon-lg small-show" />
               </div>
               <div className="caret-container">
@@ -70,12 +69,16 @@ export default class Header extends Component {
             </div>
           </button>
         </div>
-        <div className="error-message-container">
-          <div className="error-message">
-            <f-icon class="fa-exclamation-triangle" />
-          </div>
-        </div>
+        
       </header>
     );
   }
 }
+
+function mapStateToProps(state){
+  return {
+    header: state.header
+  }
+}
+
+export default connect(mapStateToProps)(Header)

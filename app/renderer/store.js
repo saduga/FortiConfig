@@ -3,21 +3,24 @@ import { routerMiddleware, routerReducer as routing, push } from 'react-router-r
 import persistState from 'redux-localstorage';
 import thunk from 'redux-thunk';
 
-import user from './reducers/user';
-import userActions from './actions/user';
+import header from './reducers/header';
+import headerActions from './actions/header';
 
 export default function configureStore(initialState, routerHistory) {
   const router = routerMiddleware(routerHistory);
 
   const actionCreators = {
-    ...userActions,
+    headerActions,
     push,
   };
 
   const reducers = {
-    user,
+    header,
     routing,
   };
+
+  const headerDefaultState = { platform: 'FortiGate VM64-KVM', deviceName: "fancy-firewall", defaultUser: "adminus" };
+  initialState = {...initialState, header: headerDefaultState };
 
   const middlewares = [thunk, router];
 
